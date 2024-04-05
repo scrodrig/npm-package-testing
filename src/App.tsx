@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { ProductCard } from "scrodrig-product-card";
+import { Product } from "scrodrig-product-card/dist/interfaces/interfaces";
+
+const product:Product={
+  id: '1',
+  title: 'Cofee mug',
+  img: './coffee-mug.png'
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App App-header">
+      <ProductCard
+        product={product}
+        initialValues={{
+          count: 4,
+          maxCount: 10,
+        }}
+      >
+        {({ reset, increaseBy, isMaxCountReached, count, maxCount }) => (
+          <>
+            <ProductCard.Image
+              style={{ boxShadow: "10px 10px 10px rgba(0,0,0,0.2)" }}
+            />
+            <ProductCard.Title title={"Coffee"} />
+            <ProductCard.Buttons />
+            {count}
+          </>
+        )}
+      </ProductCard>
     </div>
   );
 }
